@@ -200,3 +200,54 @@ footer {
 .cta-section .btn:hover {
   background: #e6e6e6;
 }
+
+/* ===== Contact Page Enhancements ===== */
+
+.contact-wrapper {
+  max-width: 700px;
+  margin: auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.contact-form textarea {
+  resize: none;
+}
+
+.contact-form button i {
+  margin-left: 8px;
+}
+
+.highlight-section .card i {
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
