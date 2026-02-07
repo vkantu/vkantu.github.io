@@ -242,10 +242,10 @@ footer {
   padding: 0 20px;
 }
 .contact-intro .section-title h2 {
-  font-size: 44px;
-  line-height: 1.02;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.2px;
+  font-size: 32px;
+  line-height: 1.12;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.1px;
   font-weight: 700;
 }
 .contact-intro .section-title {
@@ -282,7 +282,7 @@ footer {
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
   .contact-wrapper { max-width: 100%; }
   .contact-divider { display: none; }
-  .contact-intro .section-title h2 { font-size: 36px; line-height: 1.04; }
+  .contact-intro .section-title h2 { font-size: 28px; line-height: 1.08; }
 }
 
 .contact-form {
