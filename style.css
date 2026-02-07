@@ -354,6 +354,84 @@ footer {
   background: rgba(0,123,255,0.08);
 }
 
+/* Dark navbar variant for modern look */
+.navbar.dark {
+  background: rgba(6,10,17,0.92);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.navbar.dark .nav-links a {
+  color: rgba(255,255,255,0.9);
+  margin-left: 22px;
+}
+
+.navbar.dark .nav-links a:hover {
+  color: #7ee787;
+}
+
+.navbar.dark .nav-links a.active {
+  color: #7ee787;
+  background: transparent;
+}
+
+/* Hero CTAs */
+.hero-ctas {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #7ee787;
+  color: #052018;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(126,231,135,0.12);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* Left-align hero content on wide screens like the reference */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .hero-content {
+    text-align: left;
+    margin-left: 60px;
+  }
+  .hero-ctas {
+    justify-content: flex-start;
+  }
+}
+
 .hero-slider {
   margin-top: 20px;
 }
