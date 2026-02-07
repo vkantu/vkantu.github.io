@@ -18,27 +18,32 @@
 
 <!-- Hero Section -->
 <header class="hero">
-  <div class="hero-content">
-    <h1 class="fade-up">RK TECHNOLOGIES</h1>
-    <p class="fade-up delay-1">
-      Innovative Technology & Business Consulting Solutions
-    </p>
-   <div class="hero-slider">
-  <div class="slide active">
-    <h2>Innovative Technology Solutions</h2>
-    <p>Empowering digital transformation</p>
-  </div>
+  <div class="hero-overlay">
+    <div class="hero-content">
 
-  <div class="slide">
-    <h2>Business & IT Consulting</h2>
-    <p>Scalable strategies for growth</p>
-  </div>
+      <h1 class="hero-title">RK TECHNOLOGIES</h1>
+      <p class="hero-subtitle">
+        Innovative Technology & Business Consulting Solutions
+      </p>
 
-  <div class="slide">
-    <h2>Your Trusted Technology Partner</h2>
-    <p>Secure. Smart. Future-Ready.</p>
-  </div>
-</div>
+      <div class="hero-slider">
+        <div class="slide active">
+          <h2>Innovative Technology Solutions</h2>
+          <p>Empowering digital transformation for modern enterprises</p>
+        </div>
+
+        <div class="slide">
+          <h2>Business & IT Consulting</h2>
+          <p>Scalable strategies that drive measurable growth</p>
+        </div>
+
+        <div class="slide">
+          <h2>Your Trusted Technology Partner</h2>
+          <p>Secure • Smart • Future-Ready Solutions</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </header>
 
@@ -94,9 +99,23 @@
 </section>
 
 <!-- Footer -->
-<footer>
-  <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
-</footer>
+  ...
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
+  </footer>
+
+  <!-- Hero Slider Script -->
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 4000);
+  </script>
 
 </body>
 </html>
