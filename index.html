@@ -16,34 +16,36 @@
   <a href="contact.html">Contact Us</a>
 </nav>
 
-<!-- Hero Section -->
+<!-- HERO SECTION -->
 <header class="hero">
-  <div class="hero-overlay">
-    <div class="hero-content">
+  <div class="hero-content">
 
-      <h1 class="hero-title">RK TECHNOLOGIES</h1>
-      <p class="hero-subtitle">
-        Innovative Technology & Business Consulting Solutions
-      </p>
+    <h1 class="hero-brand">RK TECHNOLOGIES</h1>
+    <p class="hero-tagline">
+      Innovative Technology & Business Consulting
+    </p>
 
-      <div class="hero-slider">
-        <div class="slide active">
-          <h2>Innovative Technology Solutions</h2>
-          <p>Empowering digital transformation for modern enterprises</p>
-        </div>
-
-        <div class="slide">
-          <h2>Business & IT Consulting</h2>
-          <p>Scalable strategies that drive measurable growth</p>
-        </div>
-
-        <div class="slide">
-          <h2>Your Trusted Technology Partner</h2>
-          <p>Secure • Smart • Future-Ready Solutions</p>
-        </div>
+    <div class="hero-rotator">
+      <div class="hero-slide active">
+        <h2>Innovative Technology Solutions</h2>
+        <p>Driving digital transformation for modern enterprises</p>
       </div>
 
+      <div class="hero-slide">
+        <h2>Business & IT Consulting</h2>
+        <p>Scalable strategies that deliver measurable growth</p>
+      </div>
+
+      <div class="hero-slide">
+        <h2>Your Trusted Technology Partner</h2>
+        <p>Secure • Smart • Future-Ready Solutions</p>
+      </div>
     </div>
+
+    <a href="contact.html" class="hero-btn">
+      Talk to Our Experts
+    </a>
+
   </div>
 </header>
 
@@ -107,15 +109,15 @@
 
   <!-- Hero Slider Script -->
   <script>
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
+const heroSlides = document.querySelectorAll('.hero-slide');
+let heroIndex = 0;
 
-    setInterval(() => {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }, 4000);
-  </script>
+setInterval(() => {
+  heroSlides[heroIndex].classList.remove('active');
+  heroIndex = (heroIndex + 1) % heroSlides.length;
+  heroSlides[heroIndex].classList.add('active');
+}, 4500);
+</script>
 
 </body>
 </html>
