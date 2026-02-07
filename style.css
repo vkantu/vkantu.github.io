@@ -483,8 +483,8 @@ footer {
 /* HERO - CLEAN & MINIMAL */
 .hero {
   position: relative;
-  height: 46vh;
-  min-height: 320px;
+  height: 32vh;
+  min-height: 200px;
   display: block;
   overflow: hidden;
 }
@@ -516,7 +516,8 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(10,37,64,0.45), rgba(10,37,64,0.45));
+  /* stronger overlay to tone down large background shapes */
+  background: linear-gradient(to bottom, rgba(10,37,64,0.72), rgba(10,37,64,0.72));
 }
 
 .hero-content {
@@ -528,9 +529,9 @@ footer {
 }
 
 .hero-title {
-  font-size: 44px;
+  font-size: 40px;
   letter-spacing: 2px;
-  margin: 0 0 8px 0;
+  margin: 0;
   font-weight: 700;
 }
 
@@ -547,10 +548,17 @@ footer {
     letter-spacing: 2px;
   }
   .hero {
-    height: 56vh;
+    height: 42vh;
   }
   .hero-sub {
     font-size: 14px;
+  }
+}
+
+/* Make hero title a bit smaller on very small screens */
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: 28px;
   }
 }
 
