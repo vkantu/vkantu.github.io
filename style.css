@@ -282,6 +282,7 @@ footer {
   margin: 0 auto;
   max-width: 920px;
 }
+.faq-section .section-title h2 { text-align: center !important; margin: 0 auto 18px; }
 .faq-item {
   background: #fff;
   border-radius: 8px;
