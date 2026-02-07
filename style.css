@@ -234,7 +234,7 @@ footer {
 /* Contact grid: left intro + right form */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 480px;
+  grid-template-columns: 1fr 520px;
   gap: 48px;
   max-width: 1200px;
   margin: 0 auto 40px auto;
@@ -248,7 +248,7 @@ footer {
 }
 .contact-intro .section-title {
   text-align: left;
-  max-width: 460px;
+  max-width: 620px;
 }
 .contact-intro .section-title p {
   color: #495b66;
