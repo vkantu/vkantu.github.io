@@ -483,8 +483,8 @@ footer {
 /* HERO - MINIMAL */
 .hero {
   position: relative;
-  height: 10vh;
-  min-height: 72px;
+  height: 8vh;
+  min-height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -501,7 +501,10 @@ footer {
   width: 100%;
 }
 
-.hero-title {
+/* Ensure hero content stays centered on all pages */
+.hero .hero-content { text-align: center !important; margin-left: 0 !important; }
+
+  .hero-title {
   font-size: 32px;
   letter-spacing: 2px;
   margin: 0;
