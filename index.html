@@ -25,16 +25,7 @@
 </nav>
 
 <!-- HERO SECTION -->
-<!-- HERO SECTION -->
 <header class="hero">
-  <div class="hero-slider">
-    <div class="hero-slide active" style="background-image: url('/assets/hero1.svg')"></div>
-    <div class="hero-slide" style="background-image: url('/assets/hero2.svg')"></div>
-    <div class="hero-slide" style="background-image: url('/assets/hero3.svg')"></div>
-
-    <div class="hero-indicators"></div>
-  </div>
-
   <div class="hero-content">
     <h1 class="hero-title">RK TECHNOLOGIES</h1>
   </div>
@@ -98,54 +89,6 @@
     <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
   </footer>
 
-  <!-- Hero Slider Script -->
-  <script>
-  // Hero slider
-  (function(){
-    const slides = Array.from(document.querySelectorAll('.hero-slide'));
-    const indicatorsWrap = document.querySelector('.hero-indicators');
-    if (!slides.length) return;
-
-    let idx = 0;
-    const interval = 5000;
-
-    // build indicators
-    slides.forEach((s, i) => {
-      const btn = document.createElement('button');
-      if (i === 0) btn.classList.add('active');
-      btn.addEventListener('click', () => {
-        goTo(i);
-        restart();
-      });
-      indicatorsWrap.appendChild(btn);
-    });
-
-    const indicators = Array.from(indicatorsWrap.children);
-
-    function goTo(i){
-      slides[idx].classList.remove('active');
-      indicators[idx].classList.remove('active');
-      idx = i;
-      slides[idx].classList.add('active');
-      indicators[idx].classList.add('active');
-    }
-
-    function next(){
-      goTo((idx + 1) % slides.length);
-    }
-
-    let timer = setInterval(next, interval);
-    function restart(){
-      clearInterval(timer);
-      timer = setInterval(next, interval);
-    }
-
-    // pause on hover
-    const heroEl = document.querySelector('.hero');
-    heroEl.addEventListener('mouseenter', () => clearInterval(timer));
-    heroEl.addEventListener('mouseleave', () => { restart(); });
-  })();
-  </script>
 <script src="nav.js"></script>
 
 </body>
