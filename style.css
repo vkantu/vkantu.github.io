@@ -296,3 +296,54 @@ footer {
 .nav-links a:hover::after {
   width: 100%;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-logo img {
+  height: 55px;
+}
+
+.nav-links a {
+  margin-left: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #0a2540;
+}
+
+.hero-slider {
+  margin-top: 20px;
+}
+
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+  animation: fadeUp 1s ease;
+}
+
+.slide h2 {
+  font-size: 28px;
+}
+
+.slide p {
+  font-size: 16px;
+}
+
+.why-text {
+  max-width: 800px;
+  margin: auto;
+  text-align: left;
+  line-height: 1.8;
+}
