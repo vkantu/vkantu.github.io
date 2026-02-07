@@ -432,6 +432,26 @@ footer {
   }
 }
 
+/* Ensure dark navbar styling overrides earlier rules */
+.navbar.dark {
+  background: rgba(6,10,17,0.95) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.navbar.dark .nav-links a {
+  color: rgba(255,255,255,0.95) !important;
+}
+
+.navbar.dark .nav-links a:hover {
+  color: #7ee787 !important;
+}
+
+.navbar.dark .nav-links a.active {
+  color: #7ee787 !important;
+  background: transparent !important;
+}
+
 .hero-slider {
   margin-top: 20px;
 }
