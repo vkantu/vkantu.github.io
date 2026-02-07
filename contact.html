@@ -76,6 +76,43 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section fade-up scroll-animate">
+  <div class="section-title">
+    <h2>Frequently asked questions</h2>
+  </div>
+
+  <div class="faq">
+    <div class="faq-item open">
+      <button class="faq-question">What services does your company offer?<span class="faq-toggle">−</span></button>
+      <div class="faq-answer">
+        We specialize in custom software development, mobile and web applications, UI/UX design, and IT consulting solutions tailored to your business needs.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Do you offer both web and mobile app development?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer">
+        Yes, we offer both web and mobile app development, delivering customized solutions to meet your business needs.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What industries do you serve?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer">
+        We serve diverse industries including healthcare, education, finance, retail, and technology, providing tailored digital solutions for each sector.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do you ensure quality and security in your projects?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer">
+        We ensure quality and security through rigorous testing, code reviews, and strict compliance with industry best practices and security standards.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Contact Info -->
 <section class="highlight-section fade-up scroll-animate">
   <div class="section-title">
@@ -134,5 +171,25 @@
 
 <script src="scroll.js"></script>
 <script src="nav.js"></script>
+<script>
+  // Simple FAQ accordion toggles
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.faq-question').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var item = btn.closest('.faq-item');
+        var open = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item').forEach(function(i){
+          i.classList.remove('open');
+          i.querySelector('.faq-toggle').textContent = '+';
+        });
+        if(!open){
+          item.classList.add('open');
+          item.querySelector('.faq-toggle').textContent = '−';
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
