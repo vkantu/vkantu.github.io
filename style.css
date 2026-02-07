@@ -266,7 +266,7 @@ footer {
 }
 .contact-line i { color: #7e5cff; margin-right: 8px; }
 
-@media (max-width: 980px) {
+@media (max-width: 720px) {
   .contact-grid { grid-template-columns: 1fr; gap: 28px; }
   .contact-wrapper { max-width: 100%; }
   .contact-divider { display: none; }
