@@ -320,6 +320,22 @@ footer {
   color: #0a2540;
 }
 
+.nav-links a {
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(10,37,64,0.06);
+}
+
+.nav-links a.active {
+  color: #007BFF;
+  font-weight: 700;
+  background: rgba(0,123,255,0.08);
+}
+
 .hero-slider {
   margin-top: 20px;
 }
