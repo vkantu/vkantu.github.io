@@ -16,18 +16,6 @@ header {
 }
 
 /* Navigation */
-nav {
-  background-color: #f4f4f4;
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
 
 nav a:hover {
   color: #0a2540;
@@ -748,6 +736,100 @@ footer {
   align-items: center;
   gap: 8px;
   transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background: #0a6cff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   NAVBAR (FINAL, SINGLE SOURCE)
+========================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Left side: logo + menu */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-logo img {
+  height: 52px;
+}
+
+/* Menu links */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-right: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 6px 8px;
+}
+
+/* Underline animation */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Right side: login */
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Dark navbar */
+.navbar.dark {
+  background: rgba(6,10,17,0.95);
+}
+
+.navbar.dark .nav-links a {
+  color: rgba(255,255,255,0.95);
+}
+
+.navbar.dark .nav-links a:hover {
+  color: #7ee787;
+}
+
+/* Login button */
+.btn-login {
+  background: transparent;
+  border: 2px solid #0a6cff;
+  color: #0a6cff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
 }
 
 .btn-login:hover {
