@@ -40,6 +40,14 @@ section {
   padding: 40px 20px;
 }
 
+/* Contact layout needs more width than the default section max */
+.contact-section {
+  max-width: 1200px;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
 section h2 {
   margin-top: 0;
 }
@@ -223,8 +231,10 @@ footer {
 
 .contact-wrapper {
   max-width: 520px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   align-self: center;
+  justify-self: center;
   background: #ffffff;
   padding: 26px 22px;
   border-radius: 12px;
@@ -234,12 +244,14 @@ footer {
 /* Contact grid: left intro + right form */
 .contact-grid {
   display: grid;
-  grid-template-columns: 640px 480px;
-  gap: 48px;
-  max-width: 1200px;
-  margin: 0 auto 40px auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 0 40px 0;
   align-items: center;
-  padding: 0 20px;
+  padding: 0;
+  justify-content: flex-start;
+  width: 100%;
 }
 .contact-intro .section-title h2 {
   font-size: 32px;
@@ -250,7 +262,11 @@ footer {
 }
 .contact-intro .section-title {
   text-align: left;
-  max-width: 640px;
+  max-width: 560px;
+}
+
+.contact-intro {
+  justify-self: center;
 }
 .contact-intro .section-title p {
   color: #495b66;
@@ -278,11 +294,27 @@ footer {
 }
 .contact-line i { color: #7e5cff; margin-right: 8px; }
 
-@media (max-width: 720px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 28px; }
-  .contact-wrapper { max-width: 100%; }
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+    gap: 32px;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 820px) {
+  .contact-section { padding-left: 16px; padding-right: 16px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 28px; padding: 0; justify-content: flex-start; }
+  .contact-wrapper { max-width: 560px; width: 100%; margin: 0; }
   .contact-divider { display: none; }
-  .contact-intro .section-title h2 { font-size: 28px; line-height: 1.08; }
+  .contact-intro .section-title { text-align: left; margin: 0; }
+  .contact-intro .section-title h2 { font-size: 26px; line-height: 1.1; }
+  .contact-intro .section-title p { text-align: left; }
+}
+
+@media (max-width: 420px) {
+  .contact-wrapper { padding: 20px 16px; }
+  .form-row { flex-direction: column; }
 }
 
 .contact-form {
@@ -610,6 +642,7 @@ footer {
 
 .navbar.dark .nav-links a {
   color: rgba(255,255,255,0.95) !important;
+  margin-left: 0 !important;
 }
 
 .navbar.dark .nav-links a:hover {
@@ -767,12 +800,16 @@ footer {
   position: sticky;
   top: 0;
   z-index: 1000;
+  flex-wrap: wrap;
+  row-gap: 10px;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
   gap: 36px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .nav-logo img {
@@ -782,10 +819,14 @@ footer {
 .nav-links {
   display: flex;
   align-items: center;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .nav-links a {
-  margin-right: 20px;
+  margin-right: 0;
+  margin-left: 0;
   text-decoration: none;
   font-weight: 600;
   color: #0a2540;
@@ -805,6 +846,8 @@ footer {
 .nav-right {
   display: flex;
   align-items: center;
+  margin-left: auto;
+  flex: 0 0 auto;
 }
 
 /* Login button */
