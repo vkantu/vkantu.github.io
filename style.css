@@ -227,6 +227,63 @@ footer {
   background: #e6e6e6;
 }
 
+/* ===== Employee Login ===== */
+.login-section {
+  max-width: 1000px;
+}
+
+.login-card {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 32px 28px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 18px 36px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.login-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 24px;
+}
+
+.login-card p {
+  margin: 0 0 20px 0;
+  color: #495b66;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-form label {
+  font-weight: 600;
+  color: #0a2540;
+  font-size: 14px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-form .btn-primary {
+  width: 100%;
+  justify-content: center;
+  border: 0;
+}
+
+@media (max-width: 520px) {
+  .login-card {
+    padding: 24px 18px;
+  }
+}
+
 /* ===== Contact Page Enhancements ===== */
 
 .contact-wrapper {
