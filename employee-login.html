@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login | RK TECHNOLOGIES</title>
+  <title>Employee Login | RK TECHNOLOGIES</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -28,14 +28,18 @@
     </div>
   </div>
 
-  <div class="nav-right"></div>
+  <div class="nav-right">
+    <a href="login.html" class="btn btn-login">
+      <i class="fas fa-lock"></i> Login
+    </a>
+  </div>
 
 </nav>
 
 <!-- Hero -->
 <header class="hero">
   <div class="hero-content">
-    <h1 class="hero-title">Login</h1>
+    <h1 class="hero-title">Employee Login</h1>
   </div>
 </header>
 
@@ -43,25 +47,14 @@
 <section class="fade-up login-section">
   <div class="login-card hover-rise">
     <h2>Sign In</h2>
-    <p>Use your company credentials to continue.</p>
-
-    <div class="login-tiles">
-      <a href="employee-login.html" class="login-tile">
-        <i class="fas fa-user-tie"></i>
-        <span>Employee Login</span>
-      </a>
-      <a href="hr-login.html" class="login-tile">
-        <i class="fas fa-user-shield"></i>
-        <span>HR Login</span>
-      </a>
-    </div>
+    <p>Employee access only.</p>
 
     <form class="login-form">
-      <label for="login-identifier">Email or Username</label>
-      <input id="login-identifier" type="text" placeholder="you@company.com" required>
+      <label for="employee-identifier">Email or Username</label>
+      <input id="employee-identifier" type="text" placeholder="you@company.com" required>
 
-      <label for="login-password">Password</label>
-      <input id="login-password" type="password" placeholder="Enter your password" required>
+      <label for="employee-password">Password</label>
+      <input id="employee-password" type="password" placeholder="Enter your password" required>
 
       <button type="submit" class="btn btn-primary">
         Sign In
