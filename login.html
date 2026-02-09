@@ -28,11 +28,7 @@
     </div>
   </div>
 
-  <div class="nav-right">
-    <a href="login.html" class="btn btn-login">
-      <i class="fas fa-lock"></i> Login
-    </a>
-  </div>
+  <div class="nav-right"></div>
 
 </nav>
 
@@ -49,7 +45,15 @@
     <h2>Sign In</h2>
     <p>Use your company credentials to continue.</p>
 
-    <div class="login-tiles">
+    <button type="button" class="btn btn-primary login-toggle" id="login-toggle">
+      Login
+    </button>
+
+    <div class="login-tiles" id="login-tiles" hidden>
+      <button type="button" class="login-tile">
+        <i class="fas fa-user-tie"></i>
+        <span>Employee Login</span>
+      </button>
       <button type="button" class="login-tile">
         <i class="fas fa-user-shield"></i>
         <span>HR Login</span>
@@ -76,5 +80,21 @@
 </footer>
 
 <script src="nav.js"></script>
+<script>
+  (function () {
+    const toggle = document.getElementById('login-toggle');
+    const tiles = document.getElementById('login-tiles');
+    if (toggle && tiles) {
+      toggle.addEventListener('click', function () {
+        const isHidden = tiles.hasAttribute('hidden');
+        if (isHidden) {
+          tiles.removeAttribute('hidden');
+        } else {
+          tiles.setAttribute('hidden', '');
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
