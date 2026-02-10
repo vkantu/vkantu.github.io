@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HR Dashboard | RK TECHNOLOGIES</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .dashboard-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .dashboard-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-meta {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid #e6e6e6;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f7f7f7;
+      font-weight: 700;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #eef5ff;
+      color: #1d4ed8;
+    }
+
+    .status-pill.inactive {
+      background: #fdecea;
+      color: #b91c1c;
+    }
+
+    .dashboard-message {
+      margin: 12px 0 0;
+      font-size: 14px;
+    }
+
+    .employee-form {
+      margin-top: 12px;
+      margin-bottom: 20px;
+      padding: 16px;
+      border: 1px solid #e6e6e6;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: end;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #222;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d4d4d4;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      th, td {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fade-down navbar dark">
+
+  <div class="nav-left">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="/logo.png" alt="RK Technologies Logo">
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <button id="hr-signout" class="btn btn-login">
+      <i class="fas fa-right-from-bracket"></i> Sign Out
+    </button>
+  </div>
+
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">HR Dashboard</h1>
+    <p class="dashboard-meta" id="hr-session-email"></p>
+  </div>
+</header>
+
+<section class="dashboard-section fade-up">
+  <div class="dashboard-card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Employees</h2>
+        <p class="dashboard-meta" id="employee-count">Loading employees...</p>
+      </div>
+      <div class="dashboard-actions">
+        <button id="refresh-employees" class="btn">Refresh</button>
+      </div>
+    </div>
+
+    <form id="employee-form" class="employee-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="emp-name">Full Name</label>
+          <input id="emp-name" type="text" placeholder="Jane Doe" required>
+        </div>
+        <div class="form-field">
+          <label for="emp-email">Email</label>
+          <input id="emp-email" type="email" placeholder="jane@rktech.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="emp-role">Role</label>
+          <input id="emp-role" type="text" placeholder="HR Specialist" required>
+        </div>
+        <div class="form-field">
+          <label for="emp-dept">Department</label>
+          <input id="emp-dept" type="text" placeholder="HR" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="emp-location">Location</label>
+          <input id="emp-location" type="text" placeholder="Austin, TX">
+        </div>
+        <div class="form-field">
+          <label for="emp-status">Status</label>
+          <select id="emp-status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="emp-hire-date">Hire Date</label>
+          <input id="emp-hire-date" type="date">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+        <p id="employee-form-message" class="dashboard-message" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Hire Date</th>
+          </tr>
+        </thead>
+        <tbody id="employees-body">
+          <tr>
+            <td colspan="7">Loading...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p id="employees-message" class="dashboard-message"></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
+</footer>
+
+<script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://rabqlsxqhjslykytnqay.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_j9qSr64uhVKZgG8jTnjj6g_h2ZygZNp";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const employeesBody = document.getElementById("employees-body");
+  const employeeCount = document.getElementById("employee-count");
+  const employeesMessage = document.getElementById("employees-message");
+  const employeeFormMessage = document.getElementById("employee-form-message");
+  const sessionEmail = document.getElementById("hr-session-email");
+  const signOutBtn = document.getElementById("hr-signout");
+  const employeeForm = document.getElementById("employee-form");
+
+  const setMessage = (text, isError = false) => {
+    employeesMessage.textContent = text;
+    employeesMessage.style.color = isError ? "#c0392b" : "#1b7f3a";
+  };
+
+  const setFormMessage = (text, isError = false) => {
+    employeeFormMessage.textContent = text;
+    employeeFormMessage.style.color = isError ? "#c0392b" : "#1b7f3a";
+  };
+
+  const renderEmployees = (employees) => {
+    if (!employees.length) {
+      employeesBody.innerHTML = "<tr><td colspan=\"7\">No employees found.</td></tr>";
+      employeeCount.textContent = "0 employees";
+      return;
+    }
+
+    employeeCount.textContent = `${employees.length} employee${employees.length === 1 ? "" : "s"}`;
+    employeesBody.innerHTML = employees.map((employee) => {
+      const statusClass = employee.status && employee.status.toLowerCase() === "inactive"
+        ? "status-pill inactive"
+        : "status-pill";
+      const hireDate = employee.hire_date ? new Date(employee.hire_date).toLocaleDateString() : "—";
+
+      return `
+        <tr>
+          <td>${employee.full_name || "—"}</td>
+          <td>${employee.email || "—"}</td>
+          <td>${employee.role || "—"}</td>
+          <td>${employee.department || "—"}</td>
+          <td>${employee.location || "—"}</td>
+          <td><span class="${statusClass}">${employee.status || "Active"}</span></td>
+          <td>${hireDate}</td>
+        </tr>
+      `;
+    }).join("");
+  };
+
+  const loadEmployees = async () => {
+    setMessage("");
+    employeesBody.innerHTML = "<tr><td colspan=\"7\">Loading...</td></tr>";
+
+    const { data, error } = await supabaseClient
+      .from("employees")
+      .select("id, full_name, email, role, department, location, status, hire_date")
+      .order("full_name", { ascending: true });
+
+    if (error) {
+      employeesBody.innerHTML = "<tr><td colspan=\"7\">Unable to load employees.</td></tr>";
+      setMessage(error.message || "Could not load employees.", true);
+      employeeCount.textContent = "—";
+      return;
+    }
+
+    renderEmployees(data || []);
+  };
+
+  const addEmployee = async (event) => {
+    event.preventDefault();
+    setFormMessage("");
+
+    const fullName = document.getElementById("emp-name").value.trim();
+    const email = document.getElementById("emp-email").value.trim();
+    const role = document.getElementById("emp-role").value.trim();
+    const department = document.getElementById("emp-dept").value.trim();
+    const location = document.getElementById("emp-location").value.trim();
+    const status = document.getElementById("emp-status").value;
+    const hireDate = document.getElementById("emp-hire-date").value;
+
+    if (!fullName || !email || !role || !department) {
+      setFormMessage("Please fill in the required fields.", true);
+      return;
+    }
+
+    const { error } = await supabaseClient
+      .from("employees")
+      .insert({
+        full_name: fullName,
+        email,
+        role,
+        department,
+        location: location || null,
+        status,
+        hire_date: hireDate || null,
+      });
+
+    if (error) {
+      setFormMessage(error.message || "Unable to add employee.", true);
+      return;
+    }
+
+    setFormMessage("Employee added.");
+    employeeForm.reset();
+    document.getElementById("emp-status").value = "Active";
+    await loadEmployees();
+  };
+
+  const ensureSession = async () => {
+    const { data } = await supabaseClient.auth.getSession();
+    if (!data.session) {
+      window.location.href = "hr-login.html";
+      return;
+    }
+    sessionEmail.textContent = `Signed in as ${data.session.user.email}`;
+  };
+
+  signOutBtn.addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
+    window.location.href = "hr-login.html";
+  });
+
+  document.getElementById("refresh-employees").addEventListener("click", loadEmployees);
+  employeeForm.addEventListener("submit", addEmployee);
+
+  ensureSession();
+  loadEmployees();
+</script>
+</body>
+</html>

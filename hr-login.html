@@ -49,12 +49,14 @@
     <h2>Sign In</h2>
     <p>HR admin access only.</p>
 
-    <form class="login-form">
+    <form class="login-form" id="hr-login-form">
       <label for="hr-identifier">Email or Username</label>
-      <input id="hr-identifier" type="text" placeholder="you@company.com" required>
+      <input id="hr-identifier" type="text" placeholder="you@company.com" required autocomplete="username">
 
       <label for="hr-password">Password</label>
-      <input id="hr-password" type="password" placeholder="Enter your password" required>
+      <input id="hr-password" type="password" placeholder="Enter your password" required autocomplete="current-password">
+
+      <p id="hr-login-message" class="login-message" aria-live="polite"></p>
 
       <button type="submit" class="btn btn-primary">
         Sign In
@@ -69,5 +71,47 @@
 </footer>
 
 <script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://rabqlsxqhjslykytnqay.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_j9qSr64uhVKZgG8jTnjj6g_h2ZygZNp";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form = document.getElementById("hr-login-form");
+  const messageEl = document.getElementById("hr-login-message");
+
+  const setMessage = (text, isError = false) => {
+    messageEl.textContent = text;
+    messageEl.style.color = isError ? "#c0392b" : "#1b7f3a";
+  };
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    setMessage("");
+
+    const identifier = document.getElementById("hr-identifier").value.trim();
+    const password = document.getElementById("hr-password").value;
+
+    if (!identifier || !password) {
+      setMessage("Please enter your email and password.", true);
+      return;
+    }
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email: identifier,
+      password,
+    });
+
+    if (error) {
+      setMessage(error.message || "Login failed. Check your credentials.", true);
+      return;
+    }
+
+    setMessage("Login successful. Redirecting...");
+    setTimeout(() => {
+      window.location.href = "hr-dashboard.html";
+    }, 800);
+  });
+</script>
 </body>
 </html>
