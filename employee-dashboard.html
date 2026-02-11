@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Dashboard | RK TECHNOLOGIES</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .dashboard-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .dashboard-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .dashboard-meta {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .profile-item {
+      background: #f8f9fb;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #e6e6e6;
+    }
+
+    .profile-item h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-item p {
+      margin: 0;
+      font-size: 15px;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .dashboard-message {
+      margin: 12px 0 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fade-down navbar dark">
+
+  <div class="nav-left">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="/logo.png" alt="RK Technologies Logo">
+      </a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <button id="employee-signout" class="btn btn-login">
+      <i class="fas fa-right-from-bracket"></i> Sign Out
+    </button>
+  </div>
+
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Employee Dashboard</h1>
+    <p class="dashboard-meta" id="employee-session-email"></p>
+  </div>
+</header>
+
+<section class="dashboard-section fade-up">
+  <div class="dashboard-card">
+    <div class="dashboard-header">
+      <div>
+        <h2>Your Profile</h2>
+        <p class="dashboard-meta">Employee details from the HR system.</p>
+      </div>
+    </div>
+
+    <div id="profile-content">
+      <p class="dashboard-message">Loading your profile...</p>
+    </div>
+    <p id="profile-message" class="dashboard-message"></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
+</footer>
+
+<script src="nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://rabqlsxqhjslykytnqay.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_j9qSr64uhVKZgG8jTnjj6g_h2ZygZNp";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const profileContent = document.getElementById("profile-content");
+  const profileMessage = document.getElementById("profile-message");
+  const sessionEmail = document.getElementById("employee-session-email");
+  const signOutBtn = document.getElementById("employee-signout");
+
+  const setMessage = (text, isError = false) => {
+    profileMessage.textContent = text;
+    profileMessage.style.color = isError ? "#c0392b" : "#1b7f3a";
+  };
+
+  const renderProfile = (employee) => {
+    const hireDate = employee.hire_date ? new Date(employee.hire_date).toLocaleDateString() : "—";
+    profileContent.innerHTML = `
+      <div class="profile-grid">
+        <div class="profile-item">
+          <h4>Full Name</h4>
+          <p>${employee.full_name || "—"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Email</h4>
+          <p>${employee.email || "—"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Role</h4>
+          <p>${employee.role || "—"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Department</h4>
+          <p>${employee.department || "—"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Location</h4>
+          <p>${employee.location || "—"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Status</h4>
+          <p>${employee.status || "Active"}</p>
+        </div>
+        <div class="profile-item">
+          <h4>Hire Date</h4>
+          <p>${hireDate}</p>
+        </div>
+      </div>
+    `;
+  };
+
+  const loadProfile = async (email) => {
+    setMessage("");
+    profileContent.innerHTML = "<p class=\"dashboard-message\">Loading your profile...</p>";
+
+    const { data, error } = await supabaseClient
+      .from("employees")
+      .select("full_name, email, role, department, location, status, hire_date")
+      .eq("email", email)
+      .maybeSingle();
+
+    if (error) {
+      profileContent.innerHTML = "<p class=\"dashboard-message\">Unable to load profile.</p>";
+      setMessage(error.message || "Could not load profile.", true);
+      return;
+    }
+
+    if (!data) {
+      profileContent.innerHTML = "<p class=\"dashboard-message\">No employee record found.</p>";
+      setMessage("Ask HR to add your employee record.", true);
+      return;
+    }
+
+    renderProfile(data);
+  };
+
+  const ensureSession = async () => {
+    const { data } = await supabaseClient.auth.getSession();
+    if (!data.session) {
+      window.location.href = "employee-login.html";
+      return;
+    }
+    sessionEmail.textContent = `Signed in as ${data.session.user.email}`;
+    await loadProfile(data.session.user.email);
+  };
+
+  signOutBtn.addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
+    window.location.href = "employee-login.html";
+  });
+
+  ensureSession();
+</script>
+</body>
+</html>
