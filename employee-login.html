@@ -85,6 +85,13 @@
     messageEl.style.color = isError ? "#c0392b" : "#1b7f3a";
   };
 
+  const redirectIfLoggedIn = async () => {
+    const { data } = await supabaseClient.auth.getSession();
+    if (data.session) {
+      window.location.href = "employee-dashboard.html";
+    }
+  };
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     setMessage("");
@@ -112,6 +119,8 @@
       window.location.href = "employee-dashboard.html";
     }, 800);
   });
+
+  redirectIfLoggedIn();
 </script>
 </body>
 </html>

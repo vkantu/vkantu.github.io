@@ -208,7 +208,17 @@
   const ensureSession = async () => {
     const { data } = await supabaseClient.auth.getSession();
     if (!data.session) {
-      window.location.href = "employee-login.html";
+      const { data: authListener } = supabaseClient.auth.onAuthStateChange((_event, session) => {
+        if (session) {
+          sessionEmail.textContent = `Signed in as ${session.user.email}`;
+          loadProfile(session.user.email);
+        }
+      });
+
+      setTimeout(() => {
+        authListener.subscription.unsubscribe();
+        window.location.href = "employee-login.html";
+      }, 800);
       return;
     }
     sessionEmail.textContent = `Signed in as ${data.session.user.email}`;
