@@ -67,6 +67,58 @@
       margin: 12px 0 0;
       font-size: 14px;
     }
+
+    .task-list {
+      margin-top: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .task-item {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .task-item h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .task-meta {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .task-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .task-form label {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .task-form input,
+    .task-form select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #d4d4d4;
+      font-size: 13px;
+    }
+
+    .task-actions {
+      display: flex;
+      align-items: end;
+    }
   </style>
 </head>
 <body>
@@ -120,6 +172,20 @@
     </div>
     <p id="profile-message" class="dashboard-message"></p>
   </div>
+
+  <div class="dashboard-card" style="margin-top: 24px;">
+    <div class="dashboard-header">
+      <div>
+        <h2>Your Tasks</h2>
+        <p class="dashboard-meta" id="task-count">Loading tasks...</p>
+      </div>
+    </div>
+
+    <div id="task-list" class="task-list">
+      <p class="dashboard-message">Loading tasks...</p>
+    </div>
+    <p id="task-message" class="dashboard-message"></p>
+  </div>
 </section>
 
 <!-- Footer -->
@@ -136,12 +202,20 @@
 
   const profileContent = document.getElementById("profile-content");
   const profileMessage = document.getElementById("profile-message");
+  const taskList = document.getElementById("task-list");
+  const taskMessage = document.getElementById("task-message");
+  const taskCount = document.getElementById("task-count");
   const sessionEmail = document.getElementById("employee-session-email");
   const signOutBtn = document.getElementById("employee-signout");
 
   const setMessage = (text, isError = false) => {
     profileMessage.textContent = text;
     profileMessage.style.color = isError ? "#c0392b" : "#1b7f3a";
+  };
+
+  const setTaskMessage = (text, isError = false) => {
+    taskMessage.textContent = text;
+    taskMessage.style.color = isError ? "#c0392b" : "#1b7f3a";
   };
 
   const renderProfile = (employee) => {
@@ -205,6 +279,88 @@
     renderProfile(data);
   };
 
+  const renderTasks = (tasks) => {
+    if (!tasks.length) {
+      taskList.innerHTML = "<p class=\"dashboard-message\">No tasks assigned.</p>";
+      taskCount.textContent = "0 tasks";
+      return;
+    }
+
+    taskCount.textContent = `${tasks.length} task${tasks.length === 1 ? "" : "s"}`;
+    taskList.innerHTML = tasks.map((task) => {
+      const dueDate = task.due_date ? new Date(task.due_date).toLocaleDateString() : "—";
+      const endDateValue = task.end_date ? new Date(task.end_date).toISOString().split("T")[0] : "";
+      const remarksValue = task.remarks || "";
+      return `
+        <div class="task-item" data-task-id="${task.id}">
+          <h3>${task.title || "Task"}</h3>
+          <p class="task-meta">${task.description || ""}</p>
+          <p class="task-meta">Due: ${dueDate}</p>
+
+          <div class="task-form">
+            <div>
+              <label>Status</label>
+              <select class="task-status">
+                <option value="Open" ${task.status === "Open" ? "selected" : ""}>Open</option>
+                <option value="In Progress" ${task.status === "In Progress" ? "selected" : ""}>In Progress</option>
+                <option value="Finished" ${task.status === "Finished" ? "selected" : ""}>Finished</option>
+              </select>
+            </div>
+            <div>
+              <label>End Date</label>
+              <input type="date" class="task-end-date" value="${endDateValue}">
+            </div>
+            <div>
+              <label>Remarks</label>
+              <input type="text" class="task-remarks" value="${remarksValue}" placeholder="Add remarks">
+            </div>
+            <div class="task-actions">
+              <button type="button" class="btn btn-primary task-save">Save</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  };
+
+  const loadTasks = async (email) => {
+    setTaskMessage("");
+    taskList.innerHTML = "<p class=\"dashboard-message\">Loading tasks...</p>";
+
+    const { data, error } = await supabaseClient
+      .from("tasks")
+      .select("id, title, description, due_date, status, remarks, end_date")
+      .eq("assignee_email", email)
+      .order("due_date", { ascending: true });
+
+    if (error) {
+      taskList.innerHTML = "<p class=\"dashboard-message\">Unable to load tasks.</p>";
+      setTaskMessage(error.message || "Could not load tasks.", true);
+      taskCount.textContent = "—";
+      return;
+    }
+
+    renderTasks(data || []);
+  };
+
+  const saveTaskUpdate = async (taskId, status, endDate, remarks) => {
+    const { error } = await supabaseClient
+      .from("tasks")
+      .update({
+        status,
+        end_date: endDate || null,
+        remarks: remarks || null,
+      })
+      .eq("id", taskId);
+
+    if (error) {
+      setTaskMessage(error.message || "Unable to update task.", true);
+      return false;
+    }
+    setTaskMessage("Task updated.");
+    return true;
+  };
+
   const ensureSession = async () => {
     const { data } = await supabaseClient.auth.getSession();
     if (!data.session) {
@@ -212,6 +368,7 @@
         if (session) {
           sessionEmail.textContent = `Signed in as ${session.user.email}`;
           loadProfile(session.user.email);
+          loadTasks(session.user.email);
         }
       });
 
@@ -223,11 +380,27 @@
     }
     sessionEmail.textContent = `Signed in as ${data.session.user.email}`;
     await loadProfile(data.session.user.email);
+    await loadTasks(data.session.user.email);
   };
 
   signOutBtn.addEventListener("click", async () => {
     await supabaseClient.auth.signOut();
     window.location.href = "employee-login.html";
+  });
+
+  taskList.addEventListener("click", async (event) => {
+    const target = event.target;
+    if (!target.classList.contains("task-save")) return;
+
+    const taskItem = target.closest(".task-item");
+    if (!taskItem) return;
+
+    const taskId = taskItem.getAttribute("data-task-id");
+    const status = taskItem.querySelector(".task-status").value;
+    const endDate = taskItem.querySelector(".task-end-date").value;
+    const remarks = taskItem.querySelector(".task-remarks").value.trim();
+
+    await saveTaskUpdate(taskId, status, endDate, remarks);
   });
 
   ensureSession();
