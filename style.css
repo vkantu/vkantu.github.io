@@ -67,15 +67,29 @@ section h2 {
   box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 
+.jobs-section {
+  max-width: 1100px;
+}
+
 .jobs-section .cards {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .jobs-section .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 28px 30px;
   border-left: 4px solid #0a6cff;
+  min-height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.jobs-section .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
 .jobs-section .card h3 {
@@ -95,7 +109,8 @@ section h2 {
 }
 
 .jobs-section .card .btn {
-  margin-top: 8px;
+  margin-top: auto;
+  display: inline-block;
 }
 
 @media (max-width: 768px) {
