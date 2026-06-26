@@ -72,7 +72,7 @@ section h2 {
 }
 
 .jobs-section .cards {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
   gap: 24px;
   align-items: stretch;
 }
@@ -80,10 +80,11 @@ section h2 {
 .jobs-section .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 28px 30px;
   border-left: 4px solid #0a6cff;
   min-height: 100%;
+  height: 100%;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -111,6 +112,7 @@ section h2 {
 .jobs-section .card .btn {
   margin-top: auto;
   display: inline-block;
+  align-self: flex-start;
 }
 
 @media (max-width: 768px) {
