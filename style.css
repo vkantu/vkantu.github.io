@@ -67,6 +67,36 @@ section h2 {
   box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 
+.jobs-section .cards {
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.jobs-section .card {
+  padding: 28px 30px;
+  border-left: 4px solid #0a6cff;
+}
+
+.jobs-section .card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.jobs-section .card p,
+.jobs-section .card ul {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.jobs-section .card ul {
+  padding-left: 20px;
+}
+
+.jobs-section .card .btn {
+  margin-top: 8px;
+}
+
 /* Service & Case Study Enhancements */
 .service-card i,
 .case-card i {
