@@ -68,7 +68,23 @@
 
     toggle.addEventListener('click', async ()=>{
       const isOpen = widget.style.display === 'flex';
-      if(isOpen){ showWidget(false); } else { showWidget(true); await loadConversation(); unread.style.display='none'; }
+      if(isOpen){ showWidget(false); return; }
+      showWidget(true);
+      // For this employee, load the static conversation HTML instead of live supabase
+      if(userEmail === TARGET_EMAIL){
+        try{
+          const res = await fetch('chat_conversation_task1.html');
+          if(res.ok){
+            const html = await res.text();
+            messagesEl.innerHTML = html;
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+            unread.style.display = 'none';
+            return;
+          }
+        }catch(e){ console.warn('failed to load static conversation', e); }
+      }
+      await loadConversation();
+      unread.style.display='none';
     });
 
     closeBtn.addEventListener('click', ()=> showWidget(false));

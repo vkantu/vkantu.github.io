@@ -1,0 +1,186 @@
+<div class="conversation">
+  <div class="conversation-header"><strong>TASK 1: DATA QUALITY AUDIT – CUSTOMER MASTER DATASET (FEB 5, 2026 – FEB 18, 2026)</strong></div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Hey @Sai! Welcome to the team man. Stoked to have you onboard with us as our Business Data Systems Analyst. 🙌 Let's get you set up with your laptop first, grab some coffee, and get comfortable.<span class="chat-time">02/05/2026 09:15 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Hey Ishanth! Thanks.<span class="chat-time">02/05/2026 09:17 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Excited to be here. Onboarding forms are all done. Laptop is ready.<span class="chat-time">02/05/2026 09:18 AM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Awesome. Let’s start looking at your training track. Your first project module is going to be a deep-dive audit on our core customer master tables. To be honest, our staging datasets are a bit of a mess right now due to multi-source ingestion.<span class="chat-time">02/05/2026 11:30 AM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">We have major duplicate fields and schema mismatches slowing down the pipeline. I need you to write some custom SQL scripts to clean them up, handle the null cells, and reconcile things. Keep an eye out for server lag too while querying.<span class="chat-time">02/05/2026 11:32 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Got it.<span class="chat-time">02/05/2026 11:35 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">I will clone the repo and check schemas now. On it.<span class="chat-time">02/05/2026 11:36 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Repo is cloned locally.<span class="chat-time">02/05/2026 02:45 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Looking into the transaction staging schemas right now.<span class="chat-time">02/05/2026 02:46 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Sounds good. Let me know if you run into any initial permission errors on the AWS landing buckets.<span class="chat-time">02/05/2026 04:30 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Permissions are fine. Staging environment is connected.<span class="chat-time">02/05/2026 06:55 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Logging off for the day now. See you tomorrow.<span class="chat-time">02/05/2026 06:56 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning Sai! Let's map out the exception validation layer today.<span class="chat-time">02/06/2026 09:05 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Good morning Ishanth. On it.<span class="chat-time">02/06/2026 10:15 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Hey Ishanth, looking at the dataset schema. I have a major doubt here.<span class="chat-time">02/06/2026 01:10 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Why are the customer store IDs saved as integers in some staging logs but varchar strings in others?<span class="chat-time">02/06/2026 01:12 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Ah, great catch Sai! That's legacy data contamination from our old terminal endpoints. They weren't standardized before the pipeline ingestion. That's exactly why we need this audit.<span class="chat-time">02/06/2026 01:45 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Okay, clear. Also finding lots of orphaned records in the primary customer keys due to this.<span class="chat-time">02/06/2026 02:15 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Yes, those orphans happen when the terminal sync drops mid-way. Focus on setting up temporary landing tables to cast everything into standardized strings first, then filter those out before running your main deduplication scripts.<span class="chat-time">02/06/2026 03:20 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Okay, understood. I will create the staging tables now to handle the casting.<span class="chat-time">02/06/2026 05:22 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Pushed the basic script structure to my Git branch. Have a good weekend!<span class="chat-time">02/06/2026 06:50 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Awesome, thanks Sai. Enjoy your weekend too!<span class="chat-time">02/06/2026 06:55 PM</span></div>
+  </div>
+  <div class="chat-msg system">
+    <div class="chat-bubble">[WEEKEND LOCK: NO CHAT ENTRIES RECORDED FOR SATURDAY FEB 7 & SUNDAY FEB 8]<span class="chat-time">System</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning Sai! This weather is wild today, right? Unbelievable amount of rain for February, feels super muggy outside.<span class="chat-time">02/09/2026 08:45 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Good morning Ishanth. Yes, weather is very strange today.<span class="chat-time">02/09/2026 08:47 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Actually, I am not feeling very well today. Got a severe cold and sudden fever last night itself.<span class="chat-time">02/09/2026 08:48 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Can I please take a sick leave today? I need to go for a doctor appointment at 11 AM to check this viral fever.<span class="chat-time">02/09/2026 08:49 AM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Oh damn, sorry to hear that! Yes, absolutely, please take the day off and get some rest. Don't worry about the database sync logs at all today, your health comes first. Keep me posted after the doctor checkup.<span class="chat-time">02/09/2026 08:52 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Thank you so much Ishanth. Appreciate it. I will update you as soon as possible after seeing the doctor.<span class="chat-time">02/09/2026 08:55 AM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning @Sai, checking in. How are you feeling today? Don't push yourself if you still need rest.<span class="chat-time">02/10/2026 09:15 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Morning Ishanth. Feeling a bit better now, fever is gone down.<span class="chat-time">02/10/2026 09:18 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Logging in now. Starting back on the SQL scripts where I left off on Friday.<span class="chat-time">02/10/2026 09:20 AM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Glad you are recovering. Take it easy today. Let me know if you run into any permission blockers on the data warehouse.<span class="chat-time">02/10/2026 11:30 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">No blockers. Writing script for primary keys now.<span class="chat-time">02/10/2026 01:45 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Deduplication logic is halfway done. Testing constraints.<span class="chat-time">02/10/2026 04:20 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Sounds perfect. We will review the outputs tomorrow afternoon.<span class="chat-time">02/10/2026 05:45 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Okay, done for the day. Bye.<span class="chat-time">02/10/2026 06:50 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning Sai! Let's try to wrap up the cross-matching logic by end of day today.<span class="chat-time">02/11/2026 09:10 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Morning Ishanth. Working on it now.<span class="chat-time">02/11/2026 10:30 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Hey! Deduplication script is okay.<span class="chat-time">02/11/2026 02:13 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">But got stuck on transaction reconciliation code.<span class="chat-time">02/11/2026 02:14 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Getting translation errors on datetime columns when cross-matching tables. Pipeline is failing.<span class="chat-time">02/11/2026 02:15 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Ah, that is a legacy data format issue. Are you string parsing or using direct casting functions?<span class="chat-time">02/11/2026 03:18 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Casting fails on null fields. I need to write a nested loop to fix exceptions.<span class="chat-time">02/11/2026 05:21 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Sorry for the delay on this. I need about 4 to 5 more days to patch the script and re-test.<span class="chat-time">02/11/2026 05:22 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">No worries at all, that timeline works fine. Take your time to fix the exception handling so it does not break in prod later. Let me know if you want to jump on a quick call tomorrow to screen-share.<span class="chat-time">02/11/2026 06:10 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Okay, thanks.<span class="chat-time">02/11/2026 06:55 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">I will let you know as soon as possible if I get stuck. Logging off.<span class="chat-time">02/11/2026 06:55 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning Sai. Let's focus entirely on that nested loop patch today.<span class="chat-time">02/12/2026 09:05 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Morning Ishanth. On it now.<span class="chat-time">02/12/2026 11:15 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Working on that nested loop exception handler now.<span class="chat-time">02/12/2026 03:30 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Making good progress, the null values are bypassing the main cast function safely.<span class="chat-time">02/12/2026 03:32 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Sweet. Keep track of how much memory that loop consumes. If it pulls too many rows into cache at once, it might choke the daily cron run.<span class="chat-time">02/12/2026 04:40 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Got it. Adding limit constraints to batch the data processing blocks.<span class="chat-time">02/12/2026 06:43 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Closing for today. Patch looks steady.<span class="chat-time">02/12/2026 06:55 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Morning Sai! Friday structural stability checks today. Let's run a full volume test.<span class="chat-time">02/13/2026 09:10 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Morning. Setting up the data volume load tests now.<span class="chat-time">02/13/2026 11:20 AM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Quick update before weekend. Batching is working fine.<span class="chat-time">02/13/2026 04:15 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Running a massive test over the full historical logs now to check stability.<span class="chat-time">02/13/2026 04:16 PM</span></div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-bubble">Perfect. Leave the test run active over the weekend. I will look at the warehouse resource usage metrics tomorrow or Sunday to see how it scales. Have a good weekend!<span class="chat-time">02/13/2026 05:20 PM</span></div>
+  </div>
+  <div class="chat-msg me">
+    <div class="chat-bubble">Thanks Ishanth. You too have a great weekend! Logging out.<span class="chat-time">02/13/2026 06:50 PM</span></div>
+  </div>
+</div>
