@@ -202,8 +202,15 @@
 
 <div id="chat-widget" aria-hidden="true">
   <div id="chat-header">
-    <strong>Company Chat</strong>
-    <button id="chat-close" aria-label="Close chat">×</button>
+    <div style="display:flex;align-items:center;gap:8px;width:100%;">
+      <strong id="chat-header-title">Company Chat</strong>
+      <select id="chat-recipient-select" style="margin-left:8px;padding:6px;border-radius:6px;border:1px solid #ccc;">
+        <option value="company">Company</option>
+        <option value="prasanna">Prasanna Sai Garikipati</option>
+      </select>
+      <div style="flex:1"></div>
+      <button id="chat-close" aria-label="Close chat">×</button>
+    </div>
   </div>
   <div id="chat-messages" role="log" aria-live="polite"></div>
   <form id="chat-form" class="chat-form">

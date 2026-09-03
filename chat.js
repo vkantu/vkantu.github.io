@@ -9,6 +9,8 @@
   const input = document.getElementById('chat-input');
   const unread = document.getElementById('chat-unread');
   const sessionLabel = document.getElementById('employee-session-email');
+  const recipientSelect = document.getElementById('chat-recipient-select');
+  const headerTitle = document.getElementById('chat-header-title');
 
   let userEmail = '';
 
@@ -70,10 +72,13 @@
       const isOpen = widget.style.display === 'flex';
       if(isOpen){ showWidget(false); return; }
       showWidget(true);
-      // For this employee, load the static conversation HTML instead of live supabase
+      // For this employee, allow choosing between company and a direct contact (Prasanna)
       if(userEmail === TARGET_EMAIL){
+        const sel = recipientSelect ? recipientSelect.value : 'company';
+        headerTitle.textContent = sel === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Company Chat';
         try{
-          const res = await fetch('chat_conversation_task1.html');
+          const file = sel === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
+          const res = await fetch(file);
           if(res.ok){
             const html = await res.text();
             messagesEl.innerHTML = html;
@@ -107,10 +112,25 @@
     form.addEventListener('submit', async (ev)=>{
       ev.preventDefault();
       const text = input.value.trim(); if(!text) return;
-      const payload = { sender_email: userEmail, recipient_email: 'company@rk.com', content: text };
+      // send to selected recipient when user chooses static contacts
+      const sel = recipientSelect ? recipientSelect.value : 'company';
+      const recipient = sel === 'prasanna' ? 'prasanna.sai@rk.com' : 'company@rk.com';
+      const payload = { sender_email: userEmail, recipient_email: recipient, content: text };
       const { error } = await supabaseClient.from('messages').insert([payload]);
       if(error){ console.error(error); alert('Send failed'); return; }
       input.value = '';
     });
+
+    // If user switches recipient while widget open, reload the static conversation
+    if(recipientSelect){
+      recipientSelect.addEventListener('change', async ()=>{
+        if(widget.style.display !== 'flex') return;
+        const val = recipientSelect.value;
+        headerTitle.textContent = val === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Company Chat';
+        const file = val === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
+        try{ const res = await fetch(file); if(res.ok){ messagesEl.innerHTML = await res.text(); messagesEl.scrollTop = messagesEl.scrollHeight; } }
+        catch(e){ console.warn('reload conversation failed', e); }
+      });
+    }
   })();
 })();
