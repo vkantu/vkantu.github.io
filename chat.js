@@ -7,7 +7,6 @@
   const sessionLabel = document.getElementById("employee-session-email");
 
   let userEmail = "";
-  let currentTaskRef = null;
 
   const scrollBottom = () => {
     if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -35,19 +34,17 @@
       .replace(/'/g, "&#39;");
   };
 
-  const loadMessages = async (taskRef = null) => {
+  const loadMessages = async () => {
     if (!userEmail) return;
-    currentTaskRef = taskRef;
     messagesEl.innerHTML = '<p class="dashboard-message">Loading chat...</p>';
     try {
-      let query = supabaseClient.from('messages').select('*').order('created_at', { ascending: true }).limit(500);
-      if (taskRef) {
-        query = query.eq('task_ref', taskRef);
-      } else {
-        query = query.or(`sender_email.eq.${userEmail},recipient_email.eq.${userEmail}`);
-      }
+      const { data, error } = await supabaseClient
+        .from('messages')
+        .select('*')
+        .or(`sender_email.eq.${userEmail},recipient_email.eq.${userEmail}`)
+        .order('created_at', { ascending: true })
+        .limit(200);
 
-      const { data, error } = await query;
       if (error) throw error;
       if (!data || !data.length) {
         messagesEl.innerHTML = '<p class="dashboard-message">No messages yet.</p>';
@@ -98,11 +95,8 @@
         .channel('messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
           const m = payload.new;
-          // If viewing a task, only append messages for that task_ref
-          if (currentTaskRef) {
-            if (m.task_ref === currentTaskRef) appendMessage(m);
-          } else {
-            if (m.sender_email === userEmail || m.recipient_email === userEmail) appendMessage(m);
+          if (m.sender_email === userEmail || m.recipient_email === userEmail) {
+            appendMessage(m);
           }
         })
         .subscribe();
@@ -121,7 +115,6 @@
           sender_email: userEmail,
           recipient_email: 'company@rk.com',
           content: text,
-          task_ref: currentTaskRef,
         };
         const { error } = await supabaseClient.from('messages').insert([payload]);
         if (error) throw error;
@@ -129,17 +122,6 @@
       } catch (err) {
         console.error(err);
         chatMessage.textContent = err.message || 'Unable to send message.';
-      }
-    });
-
-    // allow clicking a task to load its conversation
-    document.addEventListener('click', (ev) => {
-      const item = ev.target.closest && ev.target.closest('.task-item');
-      if (!item) return;
-      const taskRef = item.getAttribute('data-task-ref');
-      if (taskRef) {
-        chatMessage.textContent = `Viewing conversation for: ${taskRef}`;
-        loadMessages(taskRef);
       }
     });
   })();

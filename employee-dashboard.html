@@ -312,7 +312,7 @@
       const endDateValue = task.end_date ? new Date(task.end_date).toISOString().split("T")[0] : "";
       const remarksValue = task.remarks || "";
       return `
-        <div class="task-item" data-task-id="${task.id}" data-task-ref="${task.task_ref || ''}">
+        <div class="task-item" data-task-id="${task.id}">
           <h3>${task.title || "Task"}</h3>
           <p class="task-meta">${task.description || ""}</p>
           <p class="task-meta">Due: ${dueDate}</p>
@@ -349,7 +349,7 @@
 
     const { data, error } = await supabaseClient
       .from("tasks")
-      .select("id, title, description, due_date, status, remarks, end_date, task_ref")
+      .select("id, title, description, due_date, status, remarks, end_date")
       .eq("assignee_email", email)
       .order("due_date", { ascending: true });
 
