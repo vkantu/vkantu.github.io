@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Employee Dashboard | RK TECHNOLOGIES</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chat.css">
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -192,6 +193,24 @@
 <footer>
   <p>© 2026 RK TECHNOLOGIES INC. All rights reserved.</p>
 </footer>
+
+<!-- Chat widget -->
+<div id="chat-toggle" title="Open chat" aria-hidden="true">
+  <i class="fas fa-comments"></i>
+  <span id="chat-unread" style="display:none">•</span>
+</div>
+
+<div id="chat-widget" aria-hidden="true">
+  <div id="chat-header">
+    <strong>Company Chat</strong>
+    <button id="chat-close" aria-label="Close chat">×</button>
+  </div>
+  <div id="chat-messages" role="log" aria-live="polite"></div>
+  <form id="chat-form" class="chat-form">
+    <input id="chat-input" type="text" placeholder="Write a message...">
+    <button id="chat-send" class="btn btn-primary" type="submit">Send</button>
+  </form>
+</div>
 
 <script src="nav.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
