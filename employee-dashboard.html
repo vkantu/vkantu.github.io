@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Employee Dashboard | RK TECHNOLOGIES</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chat.css">
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -185,6 +186,25 @@
       <p class="dashboard-message">Loading tasks...</p>
     </div>
     <p id="task-message" class="dashboard-message"></p>
+  </div>
+
+  <div class="dashboard-card" id="chat-card" style="margin-top:24px;">
+    <div class="dashboard-header">
+      <div>
+        <h2>Company Chat</h2>
+        <p class="dashboard-meta">Ask questions or message the company.</p>
+      </div>
+    </div>
+
+    <div id="chat-container">
+      <div id="chat-messages" aria-live="polite"></div>
+
+      <form id="chat-form" class="chat-form">
+        <input id="chat-input" type="text" placeholder="Write a message..." autocomplete="off">
+        <button id="chat-send" class="btn btn-primary" type="submit">Send</button>
+      </form>
+      <p id="chat-message" class="dashboard-message"></p>
+    </div>
   </div>
 </section>
 
@@ -405,5 +425,6 @@
 
   ensureSession();
 </script>
+<script src="chat.js"></script>
 </body>
 </html>
