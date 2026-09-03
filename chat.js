@@ -75,7 +75,7 @@
       // For this employee, allow choosing between company and a direct contact (Prasanna)
       if(userEmail === TARGET_EMAIL){
         const sel = recipientSelect ? recipientSelect.value : 'company';
-        headerTitle.textContent = sel === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Company Chat';
+        headerTitle.textContent = sel === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Ishant Monga';
         try{
           const file = sel === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
           const res = await fetch(file);
@@ -126,7 +126,7 @@
       recipientSelect.addEventListener('change', async ()=>{
         if(widget.style.display !== 'flex') return;
         const val = recipientSelect.value;
-        headerTitle.textContent = val === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Company Chat';
+        headerTitle.textContent = val === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Ishant Monga';
         const file = val === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
         try{ const res = await fetch(file); if(res.ok){ messagesEl.innerHTML = await res.text(); messagesEl.scrollTop = messagesEl.scrollHeight; } }
         catch(e){ console.warn('reload conversation failed', e); }
