@@ -126,7 +126,7 @@
       recipientSelect.addEventListener('change', async ()=>{
         if(widget.style.display !== 'flex') return;
         const val = recipientSelect.value;
-        headerTitle.textContent = val === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Ishant Monga';
+        headerTitle.textContent = val === 'prasanna' ? 'Prasanna Sai Garikipati' : 'Ishant Monga';
         const file = val === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
         try{ const res = await fetch(file); if(res.ok){ messagesEl.innerHTML = await res.text(); messagesEl.scrollTop = messagesEl.scrollHeight; } }
         catch(e){ console.warn('reload conversation failed', e); }
