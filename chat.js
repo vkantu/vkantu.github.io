@@ -75,7 +75,7 @@
       // For this employee, allow choosing between company and a direct contact (Prasanna)
       if(userEmail === TARGET_EMAIL){
         const sel = recipientSelect ? recipientSelect.value : 'company';
-        headerTitle.textContent = sel === 'prasanna' ? 'Chat — Prasanna Sai Garikipati' : 'Ishant Monga';
+        headerTitle.textContent = sel === 'prasanna' ? 'Prasanna Sai Garikipati' : 'Ishant Monga';
         try{
           const file = sel === 'prasanna' ? 'chat_conversation_prasanna_task1.html' : 'chat_conversation_task1.html';
           const res = await fetch(file);
